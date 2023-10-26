@@ -58,7 +58,7 @@ public class TestRecordService {
 
     public void overwriteMappingWithRecords() throws Exception {
         // Delete the index if it already exists
-        elasticSearchService.deleteIndexIfExists(ES_MAPPING_NAME);
+        elasticSearchService.deleteIndexAnyway(ES_MAPPING_NAME);
 
         // Construct the path of the file  (actually stored in common-backend/src/main/resources)
         String mappingFilename = "/es/big-mapping.json";

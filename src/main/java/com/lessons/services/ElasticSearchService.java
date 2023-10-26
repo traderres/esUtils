@@ -95,6 +95,30 @@ public class ElasticSearchService {
      *
      * @param aIndexName holds the index name (or alias name)
      */
+    public void deleteIndexAnyway(String aIndexName) throws Exception {
+        if (StringUtils.isEmpty(aIndexName)) {
+            throw new RuntimeException("The passed-in aIndexName is null or empty.");
+        }
+
+        // Make a synchronous POST call to delete this ES Index
+        Response response = this.asyncHttpClient.prepareDelete(this.elasticSearchUrl + "/" +
+                        aIndexName)
+                .setRequestTimeout(this.ES_REQUEST_TIMEOUT_IN_MILLISECS)
+                .setHeader("accept", "application/json")
+                .setHeader("Content-Type", "application/json")
+                .execute()
+                .get();
+
+        logger.debug("Successfully deleted this index: {}", aIndexName);
+    }
+
+
+
+    /**
+     * Delete the index from ElasticSearch
+     *
+     * @param aIndexName holds the index name (or alias name)
+     */
     public void deleteIndex(String aIndexName) throws Exception {
         if (StringUtils.isEmpty(aIndexName)) {
             throw new RuntimeException("The passed-in aIndexName is null or empty.");
