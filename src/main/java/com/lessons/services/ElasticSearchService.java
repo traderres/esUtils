@@ -141,7 +141,7 @@ public class ElasticSearchService {
 
         while (response.getStatusCode() == 429) {
             // Too many requests.  So, wait and try again
-            Thread.sleep(5000);
+            Thread.sleep(4000);
 
             response = this.asyncHttpClient.preparePost(url)
                     .setRequestTimeout(this.ES_REQUEST_TIMEOUT_IN_MILLISECS)

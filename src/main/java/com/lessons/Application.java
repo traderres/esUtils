@@ -16,6 +16,8 @@ public class Application implements CommandLineRunner
 
 
     public static void main( String[] args ) throws Exception {
+        long startTime = System.currentTimeMillis();
+
         logger.debug("main() started.");
 
         // Start up Spring Boot but disable the banner
@@ -30,7 +32,11 @@ public class Application implements CommandLineRunner
         // delete, create the mapping, and insert records
         testRecordService.overwriteMappingWithRecords();
 
-        logger.debug("App finished.");
+        long endTime = System.currentTimeMillis();
+
+        logger.debug("App finished after {} secs.", (endTime - startTime) / 1000);
+
+        System.exit(0);
     }
 
 
